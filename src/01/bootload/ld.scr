@@ -26,17 +26,30 @@ SECTIONS
 	} > rom
 
 	.rodata : {
+		_rodata_start = . ;
 		*(.strings)
 		*(.rodata)
 		*(.rodata.*)
-	}
+		_erodata = . ;
+	} > rom
 
 	.data : {
+		_data_start = . ;
 		*(.data)
-	}
+		_edata = . ;
+	} > data AT> rom
 
 	.bss : {
+		_bss_start = . ;
 		*(.bss)
 		*(COMMON)
-	}
+		_ebss = . ;
+	} > data AT> rom
+
+	. = ALIGN(4);
+	_end = . ;
+
+	.stack : {
+		_stack = .;
+	} > stack
 }
