@@ -88,7 +88,7 @@ char* elf_load(char *buf)
     return NULL;
 
   if (elf_load_program(header) < 0) /* セグメント単位でのロード */
-    return (char*)header->entry_point; /* エントリポイントを返す */
+    return NULL;
 
-  return 0;
+  return (char*)header->entry_point; /* エントリポイントを返す */
 }
