@@ -76,6 +76,8 @@ int main(void)
   static unsigned char *loadbuf = NULL;
   extern int buffer_start; /* リンカ・スクリプトで定義されているバッファ */
 
+  INTR_DISABLE; /* 割込無効 */
+
   char *entry_point;
   void (*f)(void);
 
