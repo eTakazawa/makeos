@@ -178,10 +178,9 @@ static int thread_exit(void)
 }
 
 /* 割込みハンドラの登録 */
+static void thread_intr(softvec_type_t type, unsigned long sp);
 static int setintr(softvec_type_t type, kz_handler_t handler)
 {
-  static void thread_intr(softvec_type_t type, unsigned long sp);
-
   /*
    * 割込みを受け付けるために，ソフトウエア・割込みベクタに
    * OSの割込み処理の入口となる関数を登録する．
