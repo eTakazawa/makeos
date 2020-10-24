@@ -5,17 +5,27 @@
 #include "syscall.h"
 
 /* システム・コール 戻り値はスレッドID */
-kz_thread_id_t kz_run(kz_func_t func, char *name, int stacksize,
+kz_thread_id_t kz_run(kz_func_t func, char *name, int priority, int stacksize,
 		      						int argc, char *argv[]); // スレッドの起動のシステムコール
 void kz_exit(void); // スレッド終了のシステムコール
+int kz_wait(void);
+int kz_sleep(void);
+int kz_wakeup(kz_thread_id_t id);
+kz_thread_id_t kz_getid(void);
+int kz_chpri(int priority);
 
 /* ライブラリ関数 */
-void kz_start(kz_func_t func, char *name, int stacksize,
+void kz_start(kz_func_t func, char *name, int priority, int stacksize,
 	      			int argc, char *argv[]); // 初期スレッドを起動，OSの動作を開始
 void kz_sysdown(void); // 致命的エラーのときに呼び出す
 void kz_syscall(kz_syscall_type_t type, kz_syscall_param_t *param); // システムコール
 
 /* ユーザ・スレッド */
-int test08_1_main(int argc, char *argv[]); // ユーザースレッドのメイン関数
+int test09_1_main(int argc, char *argv[]);
+int test09_2_main(int argc, char *argv[]);
+int test09_3_main(int argc, char *argv[]);
+extern kz_thread_id_t test09_1_id;
+extern kz_thread_id_t test09_2_id;
+extern kz_thread_id_t test09_3_id;
 
 #endif
