@@ -16,6 +16,7 @@ typedef enum {
   KZ_SYSCALL_TYPE_KMFREE,
   KZ_SYSCALL_TYPE_SEND,
   KZ_SYSCALL_TYPE_RECV,
+  KZ_SYSCALL_TYPE_SETINTR,
 } kz_syscall_type_t;
 
 /* システム・コール呼び出し時のパラメータ格納域の定義 */
@@ -70,6 +71,11 @@ typedef struct {
       char **pp;
       kz_thread_id_t ret;
     } recv;
+    struct {
+      softvec_handler_t type;
+      kz_handler_t handler;
+      int ret;
+    } setintr;
   } un;
 } kz_syscall_param_t;
 
